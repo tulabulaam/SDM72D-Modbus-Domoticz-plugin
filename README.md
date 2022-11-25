@@ -5,7 +5,8 @@ Original code bij MFxMF for the SDM630-M power meter https://github.com/MFxMF/SD
 
 Requirements: <br>
 Working Domoticz instance with working python plugin service (see logs in domoticz)<br>
-If python plugin service is not working try "sudo apt-get install python3.9 libpython3.9 python3.9-dev -y" (or matching version of your python installation<br>
+If python plugin service is not working try "sudo apt-get install python3.9 libpython3.9 python3.9-dev -y" <br>
+(nb: change 3.9 to matching your version of your python installation)<br>
 <br>
 Installation: <br>
 cd ~/domoticz/plugins<br>
