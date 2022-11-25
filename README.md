@@ -1,11 +1,11 @@
 # SDM72D-Modbus
-SDM72D-Modbus 3-fase power meter with RS485 Port modbus RTU plugin for domoticz
+SDM72D-Modbus 3-phase power meter with RS485 Port modbus RTU plugin for domoticz
 
 Original code bij MFxMF for the SDM630-M power meter https://github.com/MFxMF/SDM630-Modbus
 
 Requirements: <br>
 Working Domoticz instance with working python plugin service (see logs in domoticz)<br>
-If python plugin service is not working try "sudo apt-get install python3.7 libpython3.7 python3.7-dev -y"<br>
+If python plugin service is not working try "sudo apt-get install python3.9 libpython3.9 python3.9-dev -y" (or matching version of your python installation<br>
 <br>
 Installation: <br>
 cd ~/domoticz/plugins<br>
@@ -19,7 +19,8 @@ Hint: Set reading interval to 0 if you want updates per "heartbeat" of the syste
 <br>
 9 new devices will be automatically added. Go to devices tab, there you can find them<br>
 <br>
-Tested on domoticz v2020.2
+Still working on domoticz v2022.2<br>
+System: Raspberry Pi 2B with Raspbian Bullseye<br>
 <br><br><br>
 Used python modules: <br>
 pyserial -> https://pythonhosted.org/pyserial/ <br>
