@@ -1,3 +1,5 @@
+# Note: I'm not using domoticz anymore, so I'm not maintaining this code anymore.
+
 # SDM72D-Modbus
 SDM72D-Modbus 3-phase power meter with RS485 Port modbus RTU plugin for domoticz
 
