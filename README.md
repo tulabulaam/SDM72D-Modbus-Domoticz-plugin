@@ -10,7 +10,7 @@ If python plugin service is not working try "sudo apt-get install python3.9 libp
 <br>
 Installation: <br>
 cd ~/domoticz/plugins<br>
-git clone https://github.com/bbossink/SDM72D-Modbus-Domoticz-plugin <br>
+git clone https://github.com/bobbesnl/SDM72D-Modbus-Domoticz-plugin <br>
 Restart domoticz: systemctl restart domoticz.service <br>
 <br>
 Configuration: <br>
