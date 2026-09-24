@@ -80,8 +80,13 @@ class BasePlugin:
             Domoticz.Device(Name="Export power", Unit=9,TypeName="Usage",Used=0).Create()
         Options = { "Custom" : "1;VA"} 
         if 10 not in Devices:
-            Domoticz.Device(Name="Current PV Power", Unit=10,TypeName="kWh",Used=0).Create()
-        Options = { "Custom" : "1;VA"}         
+            Domoticz.Device(Name="Current PV Power", Unit=10,TypeName="kWh",Switchtype=4,Used=0).Create()  
+        if 11 not in Devices:
+            Domoticz.Device(Name="L1 Voltage", Unit=11,TypeName="Voltage",Used=0).Create()    
+        if 12 not in Devices:
+            Domoticz.Device(Name="L2 Voltage", Unit=12,TypeName="Voltage",Used=0).Create()    
+        if 13 not in Devices:
+            Domoticz.Device(Name="L3 Voltage", Unit=13,TypeName="Voltage",Used=0).Create()                                       
                
     def onStop(self):
         Domoticz.Log("Eastron SDM72D Modbus plugin stop")
@@ -99,6 +104,9 @@ class BasePlugin:
             Settable_export_kWh = self.rs485.read_float(390, functioncode=4, numberOfRegisters=2)
             Import_power = self.rs485.read_float(1280, functioncode=4, numberOfRegisters=2)
             Export_power = self.rs485.read_float(1282, functioncode=4, numberOfRegisters=2)
+            L1_voltage = self.rs485.read_float(0, functioncode=4, numberOfRegisters=2)
+            L2_voltage = self.rs485.read_float(2, functioncode=4, numberOfRegisters=2)
+            L3_voltage = self.rs485.read_float(4, functioncode=4, numberOfRegisters=2)
             
             #Update devices
             Devices[1].Update(0,str(Total_System_Power))
@@ -110,6 +118,7 @@ class BasePlugin:
             Devices[7].Update(0,str(Settable_export_kWh))
             Devices[8].Update(0,str(Import_power))
             Devices[9].Update(0,str(Export_power))
+            Devices[10].Update(0,str(Export_power)+";"+str(Export_Wh_since_last_reset*1000))
             
             
             if Parameters["ProcessingMode"] == 'Debug':
