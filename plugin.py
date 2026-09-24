@@ -135,6 +135,9 @@ class BasePlugin:
                 Domoticz.Log('Settable export kWh: {0:.3f} kWh'.format(Settable_export_kWh))
                 Domoticz.Log('Import power: {0:.3f} kWh'.format(Import_power))
                 Domoticz.Log('Export power: {0:.3f} kWh'.format(Export_power))
+                Domoticz.Log('L1 voltage: {0:.3f} V'.format(L1_voltage))
+                Domoticz.Log('L2 voltage: {0:.3f} V'.format(L2_voltage))
+                Domoticz.Log('L3 voltage: {0:.3f} V'.format(L3_voltage))
                
             self.runInterval = int(Parameters["Mode3"]) * 6
 
