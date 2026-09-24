@@ -9,13 +9,13 @@ Requirements:
     2.Communication module Modbus USB to RS485 converter module
 """
 """
-<plugin key="SDM72D" name="Eastron SDM72D-Modbus" version="1.0.0" author="bbossink">
+<plugin key="SDM72D" name="Eastron SDM72D-Modbus" version="1.0.0" author="tulabulaam">
     <params>
         <param field="SerialPort" label="Modbus Port" width="200px" required="true" default="/dev/ttyUSB0" />
-        <param field="Mode1" label="Baud rate" width="40px" required="true" default="9600"  />
-        <param field="Mode2" label="Device ID" width="40px" required="true" default="1" />
-        <param field="Mode3" label="Reading Interval min." width="40px" required="true" default="1" />
-        <param field="Mode6" label="Debug" width="75px">
+        <param field="BaudRate" label="Baud rate" width="40px" required="true" default="9600"  />
+        <param field="DeviceID" label="Device ID" width="40px" required="true" default="1" />
+        <param field="Interval" label="Reading Interval min." width="40px" required="true" default="1" />
+        <param field="ProcessingMode" label="Debug" width="75px">
             <options>
                 <option label="True" value="Debug"/>
                 <option label="False" value="Normal"  default="true" />
@@ -38,8 +38,8 @@ class BasePlugin:
         return
 
     def onStart(self):
-        self.rs485 = minimalmodbus.Instrument(Parameters["SerialPort"], int(Parameters["Mode2"]))
-        self.rs485.serial.baudrate = Parameters["Mode1"]
+        self.rs485 = minimalmodbus.Instrument(Parameters["SerialPort"], int(Parameters["DeviceID"]))
+        self.rs485.serial.baudrate = Parameters["BaudRate"]
         self.rs485.serial.bytesize = 8
         self.rs485.serial.parity = minimalmodbus.serial.PARITY_NONE
         self.rs485.serial.stopbits = 1
@@ -50,7 +50,7 @@ class BasePlugin:
         self.rs485.mode = minimalmodbus.MODE_RTU
         devicecreated = []
         Domoticz.Log("Eastron SDM72D Modbus plugin start")
-        self.runInterval = int(Parameters["Mode3"]) * 1 
+        self.runInterval = int(Parameters["Interval"]) * 1 
        
         if 1 not in Devices:
             Domoticz.Device(Name="Total System Power", Unit=1,TypeName="Usage",Used=0).Create()
@@ -79,6 +79,9 @@ class BasePlugin:
         if 9 not in Devices:
             Domoticz.Device(Name="Export power", Unit=9,TypeName="Usage",Used=0).Create()
         Options = { "Custom" : "1;VA"} 
+        if 10 not in Devices:
+            Domoticz.Device(Name="Current PV Power", Unit=10,TypeName="kWh",Used=0).Create()
+        Options = { "Custom" : "1;VA"}         
                
     def onStop(self):
         Domoticz.Log("Eastron SDM72D Modbus plugin stop")
@@ -109,7 +112,7 @@ class BasePlugin:
             Devices[9].Update(0,str(Export_power))
             
             
-            if Parameters["Mode6"] == 'Debug':
+            if Parameters["ProcessingMode"] == 'Debug':
                 Domoticz.Log("Eastron SDM72D Modbus Data")
                 Domoticz.Log('Total system power: {0:.3f} W'.format(Total_System_Power))
                 Domoticz.Log('Import Wh since last reset: {0:.3f} kWh'.format(Import_Wh_since_last_reset))
@@ -121,7 +124,7 @@ class BasePlugin:
                 Domoticz.Log('Import power: {0:.3f} kWh'.format(Import_power))
                 Domoticz.Log('Export power: {0:.3f} kWh'.format(Export_power))
                
-            self.runInterval = int(Parameters["Mode3"]) * 6
+            self.runInterval = int(Parameters["Interval"]) * 6
 
 
 global _plugin
