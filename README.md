@@ -1,4 +1,4 @@
-# 2025.09.26 Under development
+# 2025.09.26 Do not use -> Under development
 
 # SDM72D-Modbus
 SDM72D-Modbus 3-phase power meter with RS485 Port modbus RTU plugin for domoticz
