@@ -109,7 +109,7 @@ class BasePlugin:
             L3_voltage = self.rs485.read_float(4, functioncode=4, numberOfRegisters=2)
             
             #Update devices
-            Devices[1].Update(0,str(Total_System_Power))
+            Devices[1].Update(0,str(Total_System_Power)) 
             Devices[2].Update(0,str(Import_Wh_since_last_reset*1000))
             Devices[3].Update(0,str(Export_Wh_since_last_reset*1000))
             Devices[4].Update(0,str(Total_kwh))
