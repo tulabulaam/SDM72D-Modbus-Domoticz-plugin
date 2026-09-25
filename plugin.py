@@ -118,10 +118,10 @@ class BasePlugin:
             Devices[7].Update(0,str(Settable_export_kWh))
             Devices[8].Update(0,str(Import_power))
             Devices[9].Update(0,str(Export_power))
-            Devices[10].Update(0,str(Export_power)+";"+str(Export_Wh_since_last_reset*1000))
-            Devices[11].Update(0,str(L1_voltage))
-            Devices[12].Update(0,str(L2_voltage))
-            Devices[13].Update(0,str(L3_voltage)) 
+            Devices[10].Update(0,str(round(Export_power))+";"+str(Export_Wh_since_last_reset*1000))
+            Devices[11].Update(0,str(round(L1_voltage,1)))
+            Devices[12].Update(0,str(round(L2_voltage,1)))
+            Devices[13].Update(0,str(round(L3_voltage,1))) 
             
             
             if Parameters["Mode6"] == 'Debug':
